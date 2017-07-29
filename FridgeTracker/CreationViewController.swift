@@ -143,6 +143,9 @@ class CreationViewController: UIViewController {
                 } else {
                     self.displayResultScreen(forFoodName: foodName, foodImage: nil, activityRunning: false)
                 }
+            } else {
+                // TODO: Inform the user that we do not have remote data on this barcode
+                self.dismissResultScreen()
             }
         })
         self.foodRequest?.resume()
