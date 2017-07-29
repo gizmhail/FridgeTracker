@@ -1,4 +1,8 @@
 # Third party components
+## Barcode analysis and food information
+https://en.wiki.openfoodfacts.org/API
+Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures). That has a couple of legal implications. Please join us on the Slack channel to discuss them.
+
 ## Images
 - https://publicdomainvectors.org/en/free-clipart/US-National-Park-Maps-pictogram-for-a-place-serving-food-traffic-vector-image/15745.html
 - https://publicdomainvectors.org/en/free-clipart/Chicken-drumstick/56555.html
