@@ -1,3 +1,8 @@
+This app aims at limiting spoiled food, by tracking quickly and easily the expiration date of food you add to your fridge.
+
+# License
+MIT license for application code. I might have to adapt this if needed by Open Food Fact usage (information still pending)
+
 # Third party components
 ## Barcode analysis and food information
 https://en.wiki.openfoodfacts.org/API
@@ -18,6 +23,7 @@ Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures). Th
 - [] display open food fact info on list screen
 - [] display open food fact info on capture screen
 - [] fetch open food fact image asynchronously
+- [] allow to improve OFF (help info: https://github.com/aleene/FoodViewer/blob/master/FoodViewer/OFFUpdate.swift)
 - [] create logo
 - [] create splashscreen
 - [] check open food facts legals
