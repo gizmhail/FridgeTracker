@@ -63,10 +63,22 @@
                                 <subviews>
                                     <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rey-B9-H0u">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="331"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="openfoodfacts-logo" translatesAutoresizingMaskIntoConstraints="NO" id="CHY-3o-oWE">
+                                                <rect key="frame" x="228" y="8" width="67" height="47"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="47" id="UsK-24-AnA"/>
+                                                    <constraint firstAttribute="width" constant="67" id="uBx-JE-sAT"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="CHY-3o-oWE" secondAttribute="trailing" constant="8" id="mUo-hq-zNN"/>
+                                        </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Code barre détecté" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGF-PX-aN8">
-                                        <rect key="frame" x="8" y="8" width="287" height="20.5"/>
+                                        <rect key="frame" x="8" y="8" width="218" height="21"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -123,9 +135,9 @@
                                     <constraint firstItem="kVP-CL-pf5" firstAttribute="leading" secondItem="blP-Ql-Hrf" secondAttribute="leading" constant="8" id="5a0-cf-GRE"/>
                                     <constraint firstItem="kVP-CL-pf5" firstAttribute="top" secondItem="aGF-PX-aN8" secondAttribute="bottom" constant="1" id="5e1-TX-tqn"/>
                                     <constraint firstAttribute="bottom" secondItem="KdA-pi-r9f" secondAttribute="bottom" constant="8" id="99h-kF-1DB"/>
+                                    <constraint firstItem="CHY-3o-oWE" firstAttribute="leading" secondItem="aGF-PX-aN8" secondAttribute="trailing" constant="2" id="Aol-mR-7Q6"/>
                                     <constraint firstItem="Rey-B9-H0u" firstAttribute="top" secondItem="blP-Ql-Hrf" secondAttribute="top" id="Aqj-dS-Vkd"/>
                                     <constraint firstItem="Rey-B9-H0u" firstAttribute="leading" secondItem="blP-Ql-Hrf" secondAttribute="leading" id="BcS-fq-oXb"/>
-                                    <constraint firstAttribute="trailing" secondItem="aGF-PX-aN8" secondAttribute="trailing" constant="8" id="Dmx-IJ-EEm"/>
                                     <constraint firstAttribute="width" constant="303" id="EDT-9s-f8J"/>
                                     <constraint firstAttribute="bottom" secondItem="Rey-B9-H0u" secondAttribute="bottom" id="IeZ-Xi-lB9"/>
                                     <constraint firstItem="niw-PQ-T1F" firstAttribute="centerY" secondItem="blP-Ql-Hrf" secondAttribute="centerY" id="J3M-q5-hX1"/>
@@ -134,6 +146,7 @@
                                     <constraint firstAttribute="trailing" secondItem="kVP-CL-pf5" secondAttribute="trailing" constant="8" id="T77-ha-PUD"/>
                                     <constraint firstItem="itB-Gc-GH6" firstAttribute="leading" secondItem="blP-Ql-Hrf" secondAttribute="leading" constant="8" id="YVM-ji-ETU"/>
                                     <constraint firstItem="aGF-PX-aN8" firstAttribute="top" secondItem="blP-Ql-Hrf" secondAttribute="top" constant="8" id="YgF-AU-JJ7"/>
+                                    <constraint firstItem="CHY-3o-oWE" firstAttribute="top" secondItem="aGF-PX-aN8" secondAttribute="top" id="Z2r-qe-vC1"/>
                                     <constraint firstAttribute="bottom" secondItem="13C-Nd-lpC" secondAttribute="bottom" constant="8" id="b3P-kv-t8X"/>
                                     <constraint firstItem="yyF-aO-yPv" firstAttribute="top" secondItem="niw-PQ-T1F" secondAttribute="bottom" constant="2" id="bCw-kN-U6p"/>
                                     <constraint firstAttribute="trailing" secondItem="niw-PQ-T1F" secondAttribute="trailing" constant="2" id="brh-7M-l8R"/>
@@ -286,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="161"/>
+            <point key="canvasLocation" x="1284" y="160.56971514242881"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pp9-UY-2gd">
@@ -339,13 +352,24 @@
                                     <segue destination="hEI-1G-rul" kind="show" id="4Y8-da-cP2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-Jy-CFT">
+                                <rect key="frame" x="239" y="269" width="38" height="74"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="62"/>
+                                <color key="textColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="LQa-TX-bd3" firstAttribute="centerX" secondItem="nSn-E0-Rsw" secondAttribute="centerX" id="NfZ-gV-d7x"/>
                             <constraint firstItem="ITi-4A-srg" firstAttribute="centerX" secondItem="nSn-E0-Rsw" secondAttribute="centerX" id="OuJ-PJ-5Gi"/>
+                            <constraint firstItem="CCz-Jy-CFT" firstAttribute="top" secondItem="LQa-TX-bd3" secondAttribute="bottom" constant="-70" id="hne-Mq-0Iv"/>
                             <constraint firstItem="Drx-FT-YpI" firstAttribute="top" secondItem="ITi-4A-srg" secondAttribute="bottom" constant="67" id="tHl-Mb-Ynf"/>
                             <constraint firstItem="LQa-TX-bd3" firstAttribute="top" secondItem="aJQ-hg-Mrz" secondAttribute="bottom" constant="75" id="tT6-i6-mge"/>
+                            <constraint firstItem="CCz-Jy-CFT" firstAttribute="trailing" secondItem="LQa-TX-bd3" secondAttribute="trailing" constant="-10" id="uf8-VN-5DE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FridgeTracker" id="V68-mh-xK7">
@@ -356,7 +380,7 @@
             </objects>
             <point key="canvasLocation" x="504.80000000000001" y="1074.5127436281859"/>
         </scene>
-        <!--Fridge List Table View Controller-->
+        <!--Contenu du frigo-->
         <scene sceneID="28A-8V-Ga8">
             <objects>
                 <tableViewController id="hEI-1G-rul" customClass="FridgeListTableViewController" customModule="FridgeTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -443,6 +467,7 @@
                             <outlet property="delegate" destination="hEI-1G-rul" id="OmT-rc-aFl"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Contenu du frigo" id="bBI-do-a5d"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MkP-97-j4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -454,6 +479,7 @@
         <image name="camera" width="100" height="100"/>
         <image name="foodIcon" width="450" height="450"/>
         <image name="fridge" width="323" height="529"/>
+        <image name="openfoodfacts-logo" width="356" height="300"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
