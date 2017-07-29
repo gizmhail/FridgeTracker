@@ -18,6 +18,8 @@ class FridgeFoodInfo:NSObject, NSCoding {
     var expirationDate: Date? = nil
     var associatedFridge: Fridge? = nil
     var image:UIImage? = nil
+    var imagePath:String? = nil
+    var foodId: String? = nil
     
     static let noImageIcon:UIImage? = UIImage(named: "foodIcon")
     
@@ -25,27 +27,49 @@ class FridgeFoodInfo:NSObject, NSCoding {
     var openFoodFact:OpenFoodFactsProduct? = nil {
         didSet {
             self.productName = openFoodFact?.productName
+            if self.foodId == nil {
+                self.foodId = openFoodFact?.barcode
+            }
         }
+    }
+    
+    static func generateNewId() -> String {
+        return String(Date().timeIntervalSince1970)
     }
 
     // MARK: NSCoding
     func encode(with aCoder: NSCoder) {
+        if let foodId = self.foodId {
+            aCoder.encode(foodId, forKey: "foodId")
+        } else {
+            let foodId = FridgeFoodInfo.generateNewId()
+            self.foodId = foodId
+            aCoder.encode(foodId, forKey: "foodId")
+        }
         aCoder.encode(productName, forKey: "productName")
         aCoder.encode(expirationDate, forKey: "expirationDate")
+        aCoder.encode(imagePath, forKey: "imagePath")
         if let image = image {
-            aCoder.encode(UIImagePNGRepresentation(image), forKey: "image")
+            // TODO: Remove to limit db size
+            //aCoder.encode(UIImagePNGRepresentation(image), forKey: "image")
         }
         aCoder.encode(openFoodFact?.json, forKey: "openFoodFactJSON")
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
+        self.foodId = aDecoder.decodeObject(forKey: "foodId") as? String
         self.productName = aDecoder.decodeObject(forKey: "productName") as? String
         self.expirationDate = aDecoder.decodeObject(forKey: "expirationDate") as? Date
+        self.imagePath = aDecoder.decodeObject(forKey: "imagePath") as? String
         if let json = aDecoder.decodeObject(forKey: "openFoodFactJSON") as? [String:Any] {
             self.openFoodFact = OpenFoodFactsProduct(json: json)
         }
-        if let imagedata = aDecoder.decodeObject(forKey: "image") as? Data {
+        if let imageFile = self.imagePath, let saveURL = FoodHistory.shared.saveDirectoryURL() {
+            let imagePath = saveURL.appendingPathComponent(imageFile).path
+            self.image = UIImage(contentsOfFile: imagePath)
+        } else if let imagedata = aDecoder.decodeObject(forKey: "image") as? Data {
+            print("Legacy: loading image data from file directly")
             self.image = UIImage(data: imagedata)
         }
     }
@@ -57,7 +81,6 @@ class FoodHistory {
     let queue = DispatchQueue.global(qos: .background)
     
     init() {
-        loadHistory()
     }
     
     func sort() {
@@ -83,6 +106,14 @@ class FoodHistory {
     }
     
     func remove(at index: Int) {
+        let food = self.foods[index]
+        if let imagePath = food.imagePath {
+            do {
+                try FileManager.default.removeItem(at: URL(fileURLWithPath: imagePath))
+            } catch {
+                print("Unable to delete image file \(imagePath)")
+            }
+        }
         self.foods.remove(at: index)
         self.saveHistory()
     }
@@ -103,27 +134,71 @@ class FoodHistory {
     
     // MARK: Save
     
-    func savePath() -> String? {
+    func saveDirectoryURL() -> URL? {
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         if let documentPath = documentsPath.first {
-            let fridgePath = documentPath.appendingPathComponent("fridge.db")
+            return documentPath
+        }
+        
+        return nil
+    }
+    
+    func databasePath() -> String? {
+        if let saveDirectoryURL = saveDirectoryURL() {
+            let fridgePath = saveDirectoryURL.appendingPathComponent("fridge.db")
             return fridgePath.path
         }
 
         return nil
     }
     
+    func backupHistory() {
+        if let dbPath = databasePath() {
+            do {
+                try FileManager.default.copyItem(at: URL(fileURLWithPath: dbPath) , to: URL(fileURLWithPath: dbPath + ".backup"))
+            } catch {
+                print("Unableto backup db")
+            }
+        }
+    }
+    
     func saveHistory(){
         sort()
-        if let file = savePath() {
-            queue.async {
+        if let file = databasePath() {
+            DispatchQueue.main.async {
+                print("Saving...")
+                // Saving images
+                if let saveDirectoryURL = self.saveDirectoryURL() {
+                    for food in self.foods {
+                        if food.foodId == nil {
+                            food.foodId = FridgeFoodInfo.generateNewId()
+                        }
+                        if let image = food.image, let foodId = food.foodId {
+                            let imagePath = saveDirectoryURL.appendingPathComponent(foodId)
+                            if FileManager.default.isReadableFile(atPath: imagePath.path) {
+                                // Already saved
+                            } else {
+                                do {
+                                    food.imagePath = imagePath.path.replacingOccurrences(of: saveDirectoryURL.path, with: "")
+                                    try UIImagePNGRepresentation(image)?.write(to: imagePath)
+                                    let size = try FileManager.default.attributesOfItem(atPath: imagePath.path)[FileAttributeKey.size]
+                                    print("Saved image at \(imagePath). Size: \(size.debugDescription)")
+                                } catch {
+                                    print("Unable to save image")
+                                }
+                            }
+                        }
+                    }
+                }
+                // Saving metadata
                 NSKeyedArchiver.archiveRootObject(self.foods, toFile: file)
+                print("History saved !")
             }
         }
     }
     
     func loadHistory(){
-        if let file = savePath() {
+        if let file = databasePath() {
             let backup = NSKeyedUnarchiver.unarchiveObject(withFile: file)
             if let backup = backup as? [FridgeFoodInfo] {
                 self.foods = backup

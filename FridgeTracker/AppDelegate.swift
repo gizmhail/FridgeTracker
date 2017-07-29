@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let navigationController = self.window?.rootViewController as? UINavigationController {
             navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         }
+        FoodHistory.shared.loadHistory()
         return true
     }
 

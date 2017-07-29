@@ -22,6 +22,10 @@ struct OpenFoodFactsProduct {
     var imageUrlStr:String? {
         return productInfo?["image_url"] as? String
     }
+    
+    var barcode: String? {
+        return json["code"] as? String
+    }
 }
 
 
