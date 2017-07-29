@@ -21,7 +21,7 @@ class FridgeFoodInfo:NSObject, NSCoding {
     var imagePath:String? = nil
     var foodId: String? = nil
     
-    static let noImageIcon:UIImage? = UIImage(named: "foodIcon")
+    static let noImageIcon:UIImage? = UIImage(named: "food")
     
     /// Image url can be either a local or remote image
     var openFoodFact:OpenFoodFactsProduct? = nil {
