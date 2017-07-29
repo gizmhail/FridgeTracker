@@ -20,6 +20,8 @@
 		4F4F29131F2B7750006A5D1D /* FridgeFoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */; };
 		4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */; };
 		4F4F29181F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */; };
+		4FF95CF71F2D372C0078E632 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */; };
+		4FF95CF91F2D38980078E632 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 4FF95CF81F2D38980078E632 /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodInfo.swift; sourceTree = "<group>"; };
 		4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeListTableViewController.swift; sourceTree = "<group>"; };
 		4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
+		4FF95CF81F2D38980078E632 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		4F4F28CC1F2A75DA006A5D1D = {
 			isa = PBXGroup;
 			children = (
+				4FF95CF81F2D38980078E632 /* LICENSE.md */,
 				4F4F290E1F2B672F006A5D1D /* README.md */,
 				4F4F28D71F2A75DA006A5D1D /* FridgeTracker */,
 				4F4F28EC1F2A75DA006A5D1D /* FridgeTrackerTests */,
@@ -181,6 +186,7 @@
 			children = (
 				4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */,
 				4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */,
+				4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */,
 			);
 			name = Fridgelist;
 			sourceTree = "<group>";
@@ -323,9 +329,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4F28DB1F2A75DA006A5D1D /* ViewController.swift in Sources */,
+				4FF95CF91F2D38980078E632 /* LICENSE.md in Sources */,
 				4F4F28D91F2A75DA006A5D1D /* AppDelegate.swift in Sources */,
 				4F4F29181F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift in Sources */,
 				4F4F29131F2B7750006A5D1D /* FridgeFoodInfo.swift in Sources */,
+				4FF95CF71F2D372C0078E632 /* LicenseViewController.swift in Sources */,
 				4F4F29091F2A7A50006A5D1D /* CreationViewController.swift in Sources */,
 				4F4F290D1F2B54D7006A5D1D /* AVCaptureVideoTools.swift in Sources */,
 				4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */,
@@ -580,6 +588,7 @@
 				4F4F28FF1F2A75DA006A5D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F4F29001F2A75DA006A5D1D /* Build configuration list for PBXNativeTarget "FridgeTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -588,6 +597,7 @@
 				4F4F29021F2A75DA006A5D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F4F29031F2A75DA006A5D1D /* Build configuration list for PBXNativeTarget "FridgeTrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +606,7 @@
 				4F4F29051F2A75DA006A5D1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -330,6 +330,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54c-f3-uVU">
+                                <rect key="frame" x="235" y="299" width="74" height="74"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-Jy-CFT">
+                                        <rect key="frame" x="17" y="-3" width="40.5" height="74"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="62"/>
+                                        <color key="textColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="AZ4-90-aM1"/>
+                                    <constraint firstItem="CCz-Jy-CFT" firstAttribute="centerX" secondItem="54c-f3-uVU" secondAttribute="centerX" id="I8t-sG-FwH"/>
+                                    <constraint firstItem="CCz-Jy-CFT" firstAttribute="centerY" secondItem="54c-f3-uVU" secondAttribute="centerY" constant="-3" id="YFg-l0-Nhd"/>
+                                    <constraint firstAttribute="height" constant="74" id="nfA-Md-8Fv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="37"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQa-TX-bd3">
                                 <rect key="frame" x="87" y="139" width="200" height="200"/>
                                 <constraints>
@@ -352,33 +379,6 @@
                                     <segue destination="hEI-1G-rul" kind="show" id="4Y8-da-cP2"/>
                                 </connections>
                             </button>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54c-f3-uVU">
-                                <rect key="frame" x="235" y="299" width="74" height="74"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-Jy-CFT">
-                                        <rect key="frame" x="17" y="0.0" width="40.5" height="74"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <bool key="isElement" value="NO"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="62"/>
-                                        <color key="textColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="74" id="AZ4-90-aM1"/>
-                                    <constraint firstItem="CCz-Jy-CFT" firstAttribute="centerX" secondItem="54c-f3-uVU" secondAttribute="centerX" id="I8t-sG-FwH"/>
-                                    <constraint firstItem="CCz-Jy-CFT" firstAttribute="centerY" secondItem="54c-f3-uVU" secondAttribute="centerY" id="YFg-l0-Nhd"/>
-                                    <constraint firstAttribute="height" constant="74" id="nfA-Md-8Fv"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="37"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -392,11 +392,85 @@
                     </view>
                     <navigationItem key="navigationItem" title="FridgeTracker" id="V68-mh-xK7">
                         <barButtonItem key="backBarButtonItem" title="Accueil" id="N6u-gh-lof"/>
+                        <barButtonItem key="rightBarButtonItem" image="noun_910" id="1Mm-ih-7pP">
+                            <connections>
+                                <segue destination="WEz-za-Zdg" kind="show" id="LZG-xo-B81"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRU-sf-BI6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="504.80000000000001" y="1074.5127436281859"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wkF-vI-49L">
+            <objects>
+                <viewController id="WEz-za-Zdg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XHZ-be-0ii"/>
+                        <viewControllerLayoutGuide type="bottom" id="y1v-Ub-niD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4U8-kj-sTJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lDL-nN-Ali">
+                                <rect key="frame" x="127" y="318.5" width="121" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvF-TV-6Ts">
+                                        <rect key="frame" x="0.0" y="0.0" width="121" height="30"/>
+                                        <state key="normal" title="Composants tiers"/>
+                                        <connections>
+                                            <segue destination="Ni9-Nf-SLf" kind="show" id="H0G-gh-YAg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="lDL-nN-Ali" firstAttribute="centerY" secondItem="4U8-kj-sTJ" secondAttribute="centerY" id="UrU-JU-CQ1"/>
+                            <constraint firstItem="lDL-nN-Ali" firstAttribute="centerX" secondItem="4U8-kj-sTJ" secondAttribute="centerX" id="ZvI-wy-xVU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcJ-W4-59H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046" y="2003"/>
+        </scene>
+        <!--License View Controller-->
+        <scene sceneID="GXi-iq-g9E">
+            <objects>
+                <viewController id="Ni9-Nf-SLf" customClass="LicenseViewController" customModule="FridgeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PNn-53-RcJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9cj-rw-bEq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fBs-ii-7QU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOY-vW-I3v">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9cj-rw-bEq" firstAttribute="top" secondItem="eOY-vW-I3v" secondAttribute="bottom" id="2nY-ce-qnF"/>
+                            <constraint firstItem="eOY-vW-I3v" firstAttribute="leading" secondItem="fBs-ii-7QU" secondAttribute="leading" id="5GJ-ui-8Ab"/>
+                            <constraint firstAttribute="trailing" secondItem="eOY-vW-I3v" secondAttribute="trailing" id="dN0-v1-mVY"/>
+                            <constraint firstItem="eOY-vW-I3v" firstAttribute="top" secondItem="PNn-53-RcJ" secondAttribute="bottom" id="pKm-si-WmE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="eOY-vW-I3v" id="aV7-u5-Dbr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0z-MS-R8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="2087"/>
         </scene>
         <!--Contenu du frigo-->
         <scene sceneID="28A-8V-Ga8">
@@ -499,6 +573,7 @@
         <image name="food" width="176" height="178"/>
         <image name="foodIcon" width="450" height="450"/>
         <image name="fridge" width="323" height="529"/>
+        <image name="noun_910" width="30" height="30"/>
         <image name="openfoodfacts-logo" width="356" height="300"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -49,10 +49,6 @@ class FridgeFoodInfo:NSObject, NSCoding {
         aCoder.encode(productName, forKey: "productName")
         aCoder.encode(expirationDate, forKey: "expirationDate")
         aCoder.encode(imagePath, forKey: "imagePath")
-        if let image = image {
-            // TODO: Remove to limit db size
-            //aCoder.encode(UIImagePNGRepresentation(image), forKey: "image")
-        }
         aCoder.encode(openFoodFact?.json, forKey: "openFoodFactJSON")
     }
     
