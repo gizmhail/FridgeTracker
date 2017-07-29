@@ -210,6 +210,11 @@ class CreationViewController: UIViewController {
     }
     
     @IBAction func addToFridge(_ sender: Any) {
+        if !self.resultView.isHidden {
+            if self.openFoodFactResult != nil {
+                validateResultClick(sender)
+            }
+        }
         self.food?.productName = self.foodNameTextField.text
         self.food?.expirationDate = self.expirationdatePicker.date
         if let food = self.food {
