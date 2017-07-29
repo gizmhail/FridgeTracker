@@ -54,6 +54,7 @@ class FridgeFoodInfo:NSObject, NSCoding {
 class FoodHistory {
     private var foods:[FridgeFoodInfo] = []
     static let shared:FoodHistory = FoodHistory()
+    let queue = DispatchQueue.global(qos: .background)
     
     init() {
         loadHistory()
@@ -76,7 +77,9 @@ class FoodHistory {
     
     func append(_ food: FridgeFoodInfo) {
         self.foods.append(food)
-        self.saveHistory()
+        DispatchQueue.main.async {
+            self.saveHistory()
+        }
     }
     
     func remove(at index: Int) {
@@ -113,7 +116,9 @@ class FoodHistory {
     func saveHistory(){
         sort()
         if let file = savePath() {
-            NSKeyedArchiver.archiveRootObject(foods, toFile: file)
+            queue.async {
+                NSKeyedArchiver.archiveRootObject(self.foods, toFile: file)
+            }
         }
     }
     
