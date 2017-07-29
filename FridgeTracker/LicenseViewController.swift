@@ -10,6 +10,7 @@ import UIKit
 
 class LicenseViewController: UIViewController {
     @IBOutlet weak var webview: UIWebView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,4 +36,10 @@ class LicenseViewController: UIViewController {
     }
     */
 
+}
+
+extension LicenseViewController:UIWebViewDelegate {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.activityIndicator.stopAnimating()
+    }
 }

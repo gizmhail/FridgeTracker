@@ -192,7 +192,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="jMn-Zf-hbO"/>
                                         </connections>
                                     </textField>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-5a-5MH">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-5a-5MH">
                                         <rect key="frame" x="8" y="46" width="89" height="169"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="89" id="YqF-ud-n8L"/>
@@ -295,6 +295,7 @@
                         <outlet property="resultView" destination="blP-Ql-Hrf" id="Sfh-9n-0Jb"/>
                         <outlet property="snapshotButton" destination="AHg-mX-Tbz" id="mp1-by-rgs"/>
                         <outlet property="snapshotCaptureView" destination="keU-JF-6Pj" id="n2Q-zg-fCR"/>
+                        <outlet property="validateResultButton" destination="13C-Nd-lpC" id="UVr-p6-ZBd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -454,7 +455,15 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOY-vW-I3v">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ni9-Nf-SLf" id="THa-Am-SYj"/>
+                                </connections>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="V2H-Bf-5vV">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -465,6 +474,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="V2H-Bf-5vV" id="RQy-xi-avk"/>
                         <outlet property="webview" destination="eOY-vW-I3v" id="aV7-u5-Dbr"/>
                     </connections>
                 </viewController>
@@ -571,7 +581,6 @@
         <image name="SampleFood" width="113" height="200"/>
         <image name="camera" width="100" height="100"/>
         <image name="food" width="176" height="178"/>
-        <image name="foodIcon" width="450" height="450"/>
         <image name="fridge" width="323" height="529"/>
         <image name="noun_910" width="30" height="30"/>
         <image name="openfoodfacts-logo" width="356" height="300"/>

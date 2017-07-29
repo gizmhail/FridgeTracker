@@ -19,6 +19,7 @@ class CreationViewController: UIViewController {
     @IBOutlet weak var captureView: UIView!
     @IBOutlet weak var foodNameTextField: UITextField!
     
+    @IBOutlet weak var validateResultButton: UIButton!
     @IBOutlet weak var snapshotButton: UIButton!
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var addToFridgeTextButton: NSLayoutConstraint!
@@ -144,8 +145,7 @@ class CreationViewController: UIViewController {
                     self.displayResultScreen(forFoodName: foodName, foodImage: nil, activityRunning: false)
                 }
             } else {
-                // TODO: Inform the user that we do not have remote data on this barcode
-                self.dismissResultScreen()
+                self.displayResultScreenForNoResult()
             }
         })
         self.foodRequest?.resume()
@@ -161,6 +161,17 @@ class CreationViewController: UIViewController {
         self.resultImage.image = FridgeFoodInfo.noImageIcon
         self.resultName.text = ""
         self.snapshotCaptureView.isHidden = true
+        self.validateResultButton.isHidden = true
+    }
+    
+    func displayResultScreenForNoResult(){
+        self.snapshotCaptureView.isHidden = true
+        self.resultSearchingInfoLabel.isHidden = true
+        self.resultView.isHidden = false
+        self.resultActivity.isHidden = true
+        self.resultName.text = "Article inconnu"
+        self.resultImage.image = nil
+        self.validateResultButton.isHidden = true
     }
     
     func displayResultScreen(forFoodName foodName: String?, foodImage: UIImage? = nil, activityRunning: Bool = true) {
@@ -178,6 +189,7 @@ class CreationViewController: UIViewController {
         } else {
             self.resultImage.image = FridgeFoodInfo.noImageIcon
         }
+        self.validateResultButton.isHidden = false
     }
 
     func dismissResultScreen() {
