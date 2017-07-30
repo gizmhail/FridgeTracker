@@ -490,6 +490,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodHistoryCell" id="nNx-5U-gTg" customClass="FridgeHistoryTableViewCell" customModule="FridgeTracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="110"/>
@@ -537,7 +538,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.094117647060000004" green="0.68707522720277781" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="BoL-hb-bzf" secondAttribute="bottom" constant="2" id="0OL-wO-hoH"/>
                                                 <constraint firstItem="BoL-hb-bzf" firstAttribute="top" secondItem="MV6-ga-X98" secondAttribute="top" constant="2" id="0cG-Cf-KGr"/>
@@ -551,6 +552,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="MV6-ga-X98" firstAttribute="leading" secondItem="vfw-GW-uHC" secondAttribute="leading" constant="8" id="4sX-Mb-IiT"/>
                                         <constraint firstAttribute="trailing" secondItem="MV6-ga-X98" secondAttribute="trailing" constant="8" id="LTK-IE-H72"/>
@@ -558,6 +560,7 @@
                                         <constraint firstItem="MV6-ga-X98" firstAttribute="top" secondItem="vfw-GW-uHC" secondAttribute="top" constant="8" id="VgS-XP-qXE"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="expirationDateLabel" destination="HmZ-6n-pmu" id="n4g-N8-Zst"/>
                                     <outlet property="foodImageview" destination="Oo1-Pu-h77" id="R2r-0n-L7F"/>

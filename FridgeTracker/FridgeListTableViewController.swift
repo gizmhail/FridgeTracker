@@ -18,6 +18,8 @@ class FridgeListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.backgroundColor = self.navigationController?.viewControllers.first?.view.backgroundColor
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +36,18 @@ class FridgeListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return FoodHistory.shared.count
+        let count = FoodHistory.shared.count
+        if count > 0 {
+            self.tableView.backgroundView = nil
+        } else {
+            let label = UILabel()
+            label.text = "Aucun aliment ajouté au frigo"
+            label.numberOfLines = 3
+            label.textAlignment = .center
+            label.textColor = UIColor.white
+            self.tableView.backgroundView = label
+        }
+        return count
     }
 
     

@@ -4,6 +4,8 @@ This app aims at limiting spoiled food, by tracking quickly and easily the expir
 MIT license for application code. I might have to adapt this if needed by Open Food Fact usage (information still pending)
 
 # Roadmap
+- [] internationalization
+- [] voiceover accessibility
 - [] local push notif before expiration date
 - [] Core data storage
     - [] backup on iCloud
@@ -16,3 +18,5 @@ MIT license for application code. I might have to adapt this if needed by Open F
 - [] allow to improve OFF (help info: https://github.com/aleene/FoodViewer/blob/master/FoodViewer/OFFUpdate.swift)
     - [] upload picture to openfoodfacts
 - [] iOS11 Use vision to detect expiration date zone, and CoreML to read its content
+- [] today widget displaying food that may soon expire
+- [] possibility to map a food to a meal calendar entry, to determine/remind whend to eat what 
