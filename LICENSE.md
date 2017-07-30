@@ -1,16 +1,16 @@
 # FridgeTracker source code
-https://github.com/gizmhail/FridgeTracker
-MIT license https://opensource.org/licenses/MIT
+- https://github.com/gizmhail/FridgeTracker
+- MIT license https://opensource.org/licenses/MIT
 
 # Barcode analysis and food information
-Open Food Facts https://fr.openfoodfacts.org/
-Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures)
-API information: https://en.wiki.openfoodfacts.org/API
+- Open Food Facts https://fr.openfoodfacts.org/
+- Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures)
+- API information: https://en.wiki.openfoodfacts.org/API
 
 # Third party components
 ## Barcode analysis and food information
-https://en.wiki.openfoodfacts.org/API
-Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures). That has a couple of legal implications. Please join us on the Slack channel to discuss them.
+- https://en.wiki.openfoodfacts.org/API
+- Open Food Facts is under the OdBL licence (database) and CC-BY-SA (pictures). 
 
 ## Images
 # Creative common
