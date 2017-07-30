@@ -52,6 +52,13 @@ class FridgeFoodInfo:NSObject, NSCoding {
         aCoder.encode(openFoodFact?.json, forKey: "openFoodFactJSON")
     }
     
+    var imageFileURL:URL? {
+        if let imageFile = self.imagePath, let saveURL = FoodHistory.shared.saveDirectoryURL() {
+            return saveURL.appendingPathComponent(imageFile)
+        }
+        return nil
+    }
+    
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
         self.foodId = aDecoder.decodeObject(forKey: "foodId") as? String
@@ -61,8 +68,8 @@ class FridgeFoodInfo:NSObject, NSCoding {
         if let json = aDecoder.decodeObject(forKey: "openFoodFactJSON") as? [String:Any] {
             self.openFoodFact = OpenFoodFactsProduct(json: json)
         }
-        if let imageFile = self.imagePath, let saveURL = FoodHistory.shared.saveDirectoryURL() {
-            let imagePath = saveURL.appendingPathComponent(imageFile).path
+        if let imageFileURL = imageFileURL {
+            let imagePath = imageFileURL.path
             self.image = UIImage(contentsOfFile: imagePath)
         } else if let imagedata = aDecoder.decodeObject(forKey: "image") as? Data {
             print("Legacy: loading image data from file directly")
@@ -106,10 +113,12 @@ class FoodHistory {
         if let imagePath = food.imagePath {
             do {
                 try FileManager.default.removeItem(at: URL(fileURLWithPath: imagePath))
+                print("Deleted image file \(imagePath)")
             } catch {
                 print("Unable to delete image file \(imagePath)")
             }
         }
+        NotificationScheduler.shared.cancelNotification(food: food)
         self.foods.remove(at: index)
         self.saveHistory()
     }
@@ -184,6 +193,9 @@ class FoodHistory {
                                 }
                             }
                         }
+                        NotificationScheduler.shared.scheduleNotification(food: food, completionHandler: { (schedlued) in
+                            print("Scheduled: \(schedlued)")
+                        })
                     }
                 }
                 // Saving metadata

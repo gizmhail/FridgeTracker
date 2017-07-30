@@ -15,7 +15,10 @@ import UIKit
 import AVFoundation
 
 class CreationViewController: UIViewController {
+    @IBOutlet weak var foodInfoBottomConstant: NSLayoutConstraint!
 
+    
+    
     @IBOutlet weak var captureView: UIView!
     @IBOutlet weak var foodNameTextField: UITextField!
     
@@ -52,6 +55,9 @@ class CreationViewController: UIViewController {
         super.viewDidLoad()
         captureInitialisation()
         resetFoodInfo()
+        if TARGET_OS_SIMULATOR != 0 {
+            newDetection(forBarcode: "3266980467111")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -232,6 +238,10 @@ class CreationViewController: UIViewController {
         }
         self.food?.productName = self.foodNameTextField.text
         self.food?.expirationDate = self.expirationdatePicker.date
+        if self.food?.image == nil, self.food?.productName == "", self.food?.openFoodFact == nil {
+            print("Nothing to add")
+            return
+        }
         if let food = self.food {
             FoodHistory.shared.append(food)
         }
@@ -274,8 +284,14 @@ extension CreationViewController:AVCaptureMetadataOutputObjectsDelegate {
 }
 
 extension CreationViewController:UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.foodInfoBottomConstant.constant = self.foodNameTextField.frame.size.height + self.foodNameTextField.frame.origin.y
+    }
+
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        self.foodInfoBottomConstant.constant = 0
         return true
     }
 }

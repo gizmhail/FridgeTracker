@@ -19,7 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let navigationController = self.window?.rootViewController as? UINavigationController {
             navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         }
+        
         FoodHistory.shared.loadHistory()
+        
+        NotificationScheduler.shared.prepareReceivingNotifications()
+        /*
+        if FoodHistory.shared.count > 0 {
+            let food = FoodHistory.shared[0]
+            NotificationScheduler.shared.scheduleNotification(food: food) { (scheduled) in
+                print("Scheduled: \(scheduled)")
+            }
+        }
+        */
+        
         return true
     }
 

@@ -20,3 +20,4 @@ MIT license for application code. I might have to adapt this if needed by Open F
 - [] iOS11 Use vision to detect expiration date zone, and CoreML to read its content
 - [] today widget displaying food that may soon expire
 - [] possibility to map a food to a meal calendar entry, to determine/remind whend to eat what 
+- [] make clear that everything at the bottom of the bottom screen is a "add to fridge" button. 

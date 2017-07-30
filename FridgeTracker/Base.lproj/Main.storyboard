@@ -183,7 +183,7 @@
                                             <action selector="expirationdateChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="tQ2-0Q-Qin"/>
                                         </connections>
                                     </datePicker>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nouvel aliment à ajouter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clo-qw-wXs">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nouvel aliment (rempli auto si code barre visible)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clo-qw-wXs">
                                         <rect key="frame" x="8" y="8" width="359" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -286,6 +286,7 @@
                         <outlet property="captureView" destination="u5o-Ei-Jgv" id="GYP-V9-kmQ"/>
                         <outlet property="expirationdatePicker" destination="GrZ-i1-hEV" id="kLP-EN-Sod"/>
                         <outlet property="foodImage" destination="dIg-5a-5MH" id="Jhx-Tz-Pf1"/>
+                        <outlet property="foodInfoBottomConstant" destination="aGv-jI-SNt" id="GCc-Je-IQH"/>
                         <outlet property="foodNameTextField" destination="clo-qw-wXs" id="lYB-aH-6Qm"/>
                         <outlet property="fridgeCountLabel" destination="xLp-do-lAe" id="nQ2-vJ-TMA"/>
                         <outlet property="resultActivity" destination="vbw-Qb-IBU" id="ofv-Im-h72"/>

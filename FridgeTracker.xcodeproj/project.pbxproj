@@ -20,6 +20,7 @@
 		4F4F29131F2B7750006A5D1D /* FridgeFoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */; };
 		4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */; };
 		4F4F29181F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */; };
+		4FCB930D1F2E7C0400997B3A /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */; };
 		4FF95CF71F2D372C0078E632 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */; };
 		4FF95CF91F2D38980078E632 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 4FF95CF81F2D38980078E632 /* LICENSE.md */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodInfo.swift; sourceTree = "<group>"; };
 		4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeListTableViewController.swift; sourceTree = "<group>"; };
 		4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		4FF95CF81F2D38980078E632 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +171,7 @@
 			children = (
 				4F4F29101F2B6F6A006A5D1D /* OpenFoodFactsRequest.swift */,
 				4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */,
+				4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				4F4F290D1F2B54D7006A5D1D /* AVCaptureVideoTools.swift in Sources */,
 				4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */,
 				4F4F29111F2B6F6A006A5D1D /* OpenFoodFactsRequest.swift in Sources */,
+				4FCB930D1F2E7C0400997B3A /* NotificationScheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
