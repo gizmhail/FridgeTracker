@@ -21,3 +21,7 @@ MIT license for application code. I might have to adapt this if needed by Open F
 - [] today widget displaying food that may soon expire
 - [] possibility to map a food to a meal calendar entry, to determine/remind whend to eat what 
 - [] make clear that everything at the bottom of the bottom screen is a "add to fridge" button. 
+- [] edit food to add picture, see food details, ...
+- [] focus on foodd entry when coming from a notification
+- [] improve fooid to avoid duplicates
+- [] add CloudKit sharing, for shared fridge
