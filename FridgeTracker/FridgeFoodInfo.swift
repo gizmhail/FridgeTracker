@@ -27,9 +27,6 @@ class FridgeFoodInfo:NSObject, NSCoding {
     var openFoodFact:OpenFoodFactsProduct? = nil {
         didSet {
             self.productName = openFoodFact?.productName
-            if self.foodId == nil {
-                self.foodId = openFoodFact?.barcode
-            }
         }
     }
     
