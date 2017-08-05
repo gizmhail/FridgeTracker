@@ -234,11 +234,21 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-fh-3kB">
+                                        <rect key="frame" x="8" y="46" width="89" height="169"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <connections>
+                                            <action selector="snapshotClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cP9-3D-HAV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="GrZ-i1-hEV" secondAttribute="trailing" id="2rk-ry-sTW"/>
                                     <constraint firstItem="SSn-q8-fhr" firstAttribute="centerY" secondItem="bDF-Oo-0hX" secondAttribute="centerY" id="5K1-qe-Nuf"/>
+                                    <constraint firstItem="Q9N-fh-3kB" firstAttribute="top" secondItem="dIg-5a-5MH" secondAttribute="top" id="7mp-Sc-GJx"/>
                                     <constraint firstItem="clo-qw-wXs" firstAttribute="top" secondItem="Ifx-iM-ID2" secondAttribute="top" constant="8" id="DTO-V2-emc"/>
                                     <constraint firstItem="dIg-5a-5MH" firstAttribute="leading" secondItem="Ifx-iM-ID2" secondAttribute="leading" constant="8" id="DYU-jh-CB9"/>
                                     <constraint firstAttribute="trailing" secondItem="clo-qw-wXs" secondAttribute="trailing" constant="8" id="Foa-8J-wAf"/>
@@ -247,8 +257,11 @@
                                     <constraint firstItem="bDF-Oo-0hX" firstAttribute="leading" secondItem="xLp-do-lAe" secondAttribute="trailing" constant="8" id="Jd4-KC-L8z"/>
                                     <constraint firstItem="tlA-zR-b2U" firstAttribute="leading" secondItem="dIg-5a-5MH" secondAttribute="trailing" constant="8" id="P26-1D-ntj"/>
                                     <constraint firstItem="xLp-do-lAe" firstAttribute="bottom" secondItem="bDF-Oo-0hX" secondAttribute="bottom" id="QlF-md-yQW"/>
+                                    <constraint firstItem="Q9N-fh-3kB" firstAttribute="bottom" secondItem="dIg-5a-5MH" secondAttribute="bottom" id="Wht-uf-uUF"/>
                                     <constraint firstItem="dIg-5a-5MH" firstAttribute="top" secondItem="clo-qw-wXs" secondAttribute="bottom" constant="8" id="agc-cH-Rte"/>
+                                    <constraint firstItem="Q9N-fh-3kB" firstAttribute="trailing" secondItem="dIg-5a-5MH" secondAttribute="trailing" id="bR5-Cj-Kgw"/>
                                     <constraint firstItem="clo-qw-wXs" firstAttribute="leading" secondItem="Ifx-iM-ID2" secondAttribute="leading" constant="8" id="bnZ-7m-7aM"/>
+                                    <constraint firstItem="Q9N-fh-3kB" firstAttribute="leading" secondItem="dIg-5a-5MH" secondAttribute="leading" id="bpC-OC-HdV"/>
                                     <constraint firstItem="bDF-Oo-0hX" firstAttribute="top" secondItem="GrZ-i1-hEV" secondAttribute="bottom" constant="10" id="cmV-Bk-QWM"/>
                                     <constraint firstItem="SSn-q8-fhr" firstAttribute="leading" secondItem="Ifx-iM-ID2" secondAttribute="leading" constant="8" id="e4Z-6A-WHY"/>
                                     <constraint firstItem="tlA-zR-b2U" firstAttribute="top" secondItem="clo-qw-wXs" secondAttribute="bottom" constant="8" id="lKG-NW-Z8B"/>
