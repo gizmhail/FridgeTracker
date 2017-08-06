@@ -17,6 +17,7 @@ import AVFoundation
 class CreationViewController: UIViewController {
     @IBOutlet weak var foodInfoBottomConstant: NSLayoutConstraint!
 
+    @IBOutlet weak var fridgePickerView: UIPickerView!
     
     
     @IBOutlet weak var captureView: UIView!
@@ -26,7 +27,7 @@ class CreationViewController: UIViewController {
     @IBOutlet weak var snapshotButton: UIButton!
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var addToFridgeTextButton: NSLayoutConstraint!
-    @IBOutlet weak var fridgeCountLabel: UILabel!
+    //@IBOutlet weak var fridgeCountLabel: UILabel!
     
     @IBOutlet weak var addToFridgeButton: NSLayoutConstraint!
     var avCaptureSession:AVCaptureSession?
@@ -212,7 +213,7 @@ class CreationViewController: UIViewController {
         } else {
             self.foodImage.image = self.food?.image
         }
-        self.fridgeCountLabel.text = String(format: "%02d", FoodHistory.shared.count)
+        self.fridgePickerView.reloadAllComponents()
     }
     
     // MARK: Interaction
@@ -305,17 +306,80 @@ extension CreationViewController:AVCapturePhotoCaptureDelegate {
         
         if  let sampleBuffer = photoSampleBuffer,
             let dataImage =  AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer:  sampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) {
-            print(UIImage(data: dataImage)?.size as Any)
+            //print(UIImage(data: dataImage)?.size as Any)
             
             let dataProvider = CGDataProvider(data: dataImage as CFData)
             let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
             let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.right)
             
-            self.food?.image = image
+            self.food?.image = image.correctlyOrientedImage()
             updateSelectedFoodUI()
         } else {
             print("some error here")
         }
+    }
+}
+
+extension CreationViewController:UIPickerViewDelegate {
+    
+
+    // func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat { return 0.0 }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 35
+    }
+    
+    
+    //func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { }
+    
+    func fridgeNameFor(row: Int) -> String? {
+        if FoodHistory.shared.fridges.count > row {
+            return FoodHistory.shared.fridges[row]
+        }
+        return nil
+    }
+    
+    // func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {}
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        let fridgeName = (fridgeNameFor(row: row) ?? "Autre")
+        let fridgeContent = FoodHistory.shared.foodByFridge[fridgeName]
+        let fridgeContentCount:Int
+        if let fridgeContent = fridgeContent {
+            fridgeContentCount = fridgeContent.count
+        } else {
+            fridgeContentCount = 0
+        }
+            
+        pickerLabel.textAlignment = NSTextAlignment.left
+        let fridgeContentStr = "\(String(format: "%02d", fridgeContentCount)) "
+        let str:String = fridgeContentStr + " " + fridgeName
+        
+        let indiceFont = UIFont.systemFont(ofSize: 15)
+        
+        let attString = NSMutableAttributedString(string: str, attributes: [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:UIFont.systemFont(ofSize: 28)])
+        let indexRange = (str as NSString).range(of: fridgeContentStr)
+        
+        attString.setAttributes([NSFontAttributeName:indiceFont,NSBaselineOffsetAttributeName:-6,NSForegroundColorAttributeName:UIColor.white], range: indexRange)
+        pickerLabel.attributedText = attString
+        return pickerLabel
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print( fridgeNameFor(row: row) )
+    }
+
+}
+
+extension CreationViewController:UIPickerViewDataSource {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return FoodHistory.shared.fridges.count
     }
 }
 

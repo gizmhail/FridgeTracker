@@ -9,14 +9,10 @@
 import Foundation
 import UIKit
 
-struct Fridge {
-
-}
-
 class FridgeFoodInfo:NSObject, NSCoding {
     var productName: String? = nil
     var expirationDate: Date? = nil
-    var associatedFridge: Fridge? = nil
+    var fridgeName: String? = nil
     var image:UIImage? = nil
     var imagePath:String? = nil
     var foodId: String? = nil
@@ -44,6 +40,7 @@ class FridgeFoodInfo:NSObject, NSCoding {
             aCoder.encode(foodId, forKey: "foodId")
         }
         aCoder.encode(productName, forKey: "productName")
+        aCoder.encode(fridgeName, forKey: "fridgeName")
         aCoder.encode(expirationDate, forKey: "expirationDate")
         aCoder.encode(imagePath, forKey: "imagePath")
         aCoder.encode(openFoodFact?.json, forKey: "openFoodFactJSON")
@@ -59,6 +56,7 @@ class FridgeFoodInfo:NSObject, NSCoding {
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
         self.foodId = aDecoder.decodeObject(forKey: "foodId") as? String
+        self.fridgeName = aDecoder.decodeObject(forKey: "fridgeName") as? String
         self.productName = aDecoder.decodeObject(forKey: "productName") as? String
         self.expirationDate = aDecoder.decodeObject(forKey: "expirationDate") as? Date
         self.imagePath = aDecoder.decodeObject(forKey: "imagePath") as? String
@@ -77,6 +75,8 @@ class FridgeFoodInfo:NSObject, NSCoding {
 
 class FoodHistory {
     private var foods:[FridgeFoodInfo] = []
+    var foodByFridge:[String:[FridgeFoodInfo]] = [:]
+    var fridges:[String] = ["Frigo", "Placard", "Autre"]
     static let shared:FoodHistory = FoodHistory()
     let queue = DispatchQueue.global(qos: .background)
     
@@ -200,6 +200,21 @@ class FoodHistory {
                 print("History saved !")
             }
         }
+        updateFoodByFridge()
+    }
+    
+    func updateFoodByFridge() {
+        foodByFridge = [:]
+        for food in foods {
+            let fridgeName = food.fridgeName ?? "Autre"
+            if !fridges.contains(fridgeName) {
+                fridges.append(fridgeName)
+            }
+            if foodByFridge[fridgeName] == nil {
+                foodByFridge[fridgeName] = []
+            }
+            foodByFridge[fridgeName]?.append(food)
+        }
     }
     
     func loadHistory(){
@@ -207,6 +222,7 @@ class FoodHistory {
             let backup = NSKeyedUnarchiver.unarchiveObject(withFile: file)
             if let backup = backup as? [FridgeFoodInfo] {
                 self.foods = backup
+                updateFoodByFridge()
             } else {
                 self.foods = []
             }
