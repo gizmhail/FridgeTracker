@@ -59,6 +59,20 @@ class CreationViewController: UIViewController {
         if TARGET_OS_SIMULATOR != 0 {
             newDetection(forBarcode: "3266980467111")
         }
+        if let lastSelectedFridge = UserDefaults.standard.object(forKey: "LastSelectedRow") as? String {
+            for (index, fridgeName) in FoodHistory.shared.fridges.enumerated() {
+                if fridgeName == lastSelectedFridge {
+                    fridgePickerView.selectRow(index, inComponent: 0, animated: false)
+                    break
+                }
+            }
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.synchronize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -237,6 +251,7 @@ class CreationViewController: UIViewController {
                 validateResultClick(sender)
             }
         }
+        self.food?.fridgeName = fridgeNameFor(row: fridgePickerView.selectedRow(inComponent: 0))
         self.food?.productName = self.foodNameTextField.text
         self.food?.expirationDate = self.expirationdatePicker.date
         if self.food?.image == nil, self.food?.productName == "", self.food?.openFoodFact == nil {
@@ -367,7 +382,7 @@ extension CreationViewController:UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print( fridgeNameFor(row: row) )
+        UserDefaults.standard.set(fridgeNameFor(row: row), forKey: "LastSelectedRow")
     }
 
 }

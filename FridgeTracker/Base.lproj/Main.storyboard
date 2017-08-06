@@ -399,7 +399,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="fridge"/>
                                 <connections>
-                                    <segue destination="hEI-1G-rul" kind="show" id="4Y8-da-cP2"/>
+                                    <segue destination="Csh-b5-yrv" kind="show" id="HrR-25-Q95"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -600,6 +600,137 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MkP-97-j4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1520.8" y="1335.3823088455774"/>
+        </scene>
+        <!--Contenu du frigo-->
+        <scene sceneID="Fkt-q1-5Ut">
+            <objects>
+                <viewController id="Csh-b5-yrv" customClass="FridgeListTableViewController" customModule="FridgeTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Op-9U-yJL"/>
+                        <viewControllerLayoutGuide type="bottom" id="VGV-Id-CbO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="29k-Bb-mFP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWX-Gk-YgM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="90"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="GXB-H9-1XD"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="Csh-b5-yrv" id="YBB-20-Ffr"/>
+                                    <outlet property="delegate" destination="Csh-b5-yrv" id="GAe-fa-f3o"/>
+                                </connections>
+                            </pickerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j3J-QM-oeu">
+                                <rect key="frame" x="0.0" y="154" width="375" height="513"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodHistoryCell" id="ncl-3k-JKW" customClass="FridgeHistoryTableViewCell" customModule="FridgeTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ncl-3k-JKW" id="bC5-2M-zWr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IPo-l9-cxo">
+                                                    <rect key="frame" x="8" y="8" width="359" height="102"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDX-B7-6oL">
+                                                            <rect key="frame" x="2" y="2" width="355" height="98"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escalope de veau" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-cR-gOn">
+                                                                    <rect key="frame" x="63" y="10" width="282" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srb-kP-bkv">
+                                                                    <rect key="frame" x="63" y="32.5" width="37.5" height="18"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vZA-jT-S6W">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="98"/>
+                                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="55" id="ARK-1s-K6e"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="Srb-kP-bkv" firstAttribute="top" secondItem="Fqj-cR-gOn" secondAttribute="bottom" constant="2" id="ArK-ks-a4B"/>
+                                                                <constraint firstItem="Fqj-cR-gOn" firstAttribute="leading" secondItem="Srb-kP-bkv" secondAttribute="leading" id="Edf-3e-uMm"/>
+                                                                <constraint firstAttribute="bottom" secondItem="vZA-jT-S6W" secondAttribute="bottom" id="TRM-my-WcE"/>
+                                                                <constraint firstItem="vZA-jT-S6W" firstAttribute="top" secondItem="LDX-B7-6oL" secondAttribute="top" id="aa5-Tj-4Xk"/>
+                                                                <constraint firstItem="Srb-kP-bkv" firstAttribute="leading" secondItem="vZA-jT-S6W" secondAttribute="trailing" constant="8" id="n7U-nL-VYp"/>
+                                                                <constraint firstItem="vZA-jT-S6W" firstAttribute="leading" secondItem="LDX-B7-6oL" secondAttribute="leading" id="rDk-f6-Q3g"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="Fqj-cR-gOn" secondAttribute="trailing" constant="2" id="skg-8x-1Xz"/>
+                                                                <constraint firstItem="Fqj-cR-gOn" firstAttribute="top" secondItem="LDX-B7-6oL" secondAttribute="topMargin" constant="2" id="ypk-Vu-IES"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.094117647060000004" green="0.68707522720000003" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="LDX-B7-6oL" secondAttribute="trailing" constant="2" id="4PA-aK-7yb"/>
+                                                        <constraint firstItem="LDX-B7-6oL" firstAttribute="leading" secondItem="IPo-l9-cxo" secondAttribute="leading" constant="2" id="Gfb-N8-Rzi"/>
+                                                        <constraint firstItem="LDX-B7-6oL" firstAttribute="top" secondItem="IPo-l9-cxo" secondAttribute="top" constant="2" id="Jhi-cU-tia"/>
+                                                        <constraint firstAttribute="bottom" secondItem="LDX-B7-6oL" secondAttribute="bottom" constant="2" id="nvf-FG-mwB"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <integer key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="IPo-l9-cxo" firstAttribute="leading" secondItem="bC5-2M-zWr" secondAttribute="leading" constant="8" id="SEs-lf-kMk"/>
+                                                <constraint firstAttribute="trailing" secondItem="IPo-l9-cxo" secondAttribute="trailing" constant="8" id="aci-WY-Shk"/>
+                                                <constraint firstAttribute="bottom" secondItem="IPo-l9-cxo" secondAttribute="bottom" constant="7" id="eJr-Vu-wpR"/>
+                                                <constraint firstItem="IPo-l9-cxo" firstAttribute="top" secondItem="bC5-2M-zWr" secondAttribute="top" constant="8" id="gW5-El-0Qy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="expirationDateLabel" destination="Srb-kP-bkv" id="jQK-eQ-oev"/>
+                                            <outlet property="foodImageview" destination="vZA-jT-S6W" id="LEf-8d-Rf6"/>
+                                            <outlet property="productNameLabel" destination="Fqj-cR-gOn" id="2rp-Yi-Sba"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Csh-b5-yrv" id="vwO-V9-B9h"/>
+                                    <outlet property="delegate" destination="Csh-b5-yrv" id="Dai-7K-SrQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.094117647060000004" green="0.71764705880000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="EWX-Gk-YgM" firstAttribute="top" secondItem="7Op-9U-yJL" secondAttribute="bottom" id="DpB-v7-3ZX"/>
+                            <constraint firstAttribute="trailing" secondItem="EWX-Gk-YgM" secondAttribute="trailing" id="LhL-fq-MLz"/>
+                            <constraint firstItem="VGV-Id-CbO" firstAttribute="top" secondItem="j3J-QM-oeu" secondAttribute="bottom" id="LrE-wm-RiB"/>
+                            <constraint firstItem="EWX-Gk-YgM" firstAttribute="leading" secondItem="29k-Bb-mFP" secondAttribute="leading" id="ZgA-zM-WVo"/>
+                            <constraint firstItem="j3J-QM-oeu" firstAttribute="top" secondItem="EWX-Gk-YgM" secondAttribute="bottom" id="bwB-Z6-cmM"/>
+                            <constraint firstItem="j3J-QM-oeu" firstAttribute="leading" secondItem="29k-Bb-mFP" secondAttribute="leading" id="ld7-YG-aB0"/>
+                            <constraint firstAttribute="trailing" secondItem="j3J-QM-oeu" secondAttribute="trailing" id="lty-x8-H0B"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contenu du frigo" id="2lV-4X-moZ"/>
+                    <connections>
+                        <outlet property="fridgePickerView" destination="EWX-Gk-YgM" id="NUG-Zz-AgK"/>
+                        <outlet property="tableView" destination="j3J-QM-oeu" id="E8E-fR-a1o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WZO-Xe-C06" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2309.5999999999999" y="1334.4827586206898"/>
         </scene>
     </scenes>
     <resources>

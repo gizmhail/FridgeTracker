@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         }
         
-        FoodHistory.shared.loadHistory()
+        let fh = FoodHistory.shared
+        fh.loadHistory()
         
         NotificationScheduler.shared.prepareReceivingNotifications()
         /*

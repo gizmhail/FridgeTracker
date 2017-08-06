@@ -76,7 +76,7 @@ class FridgeFoodInfo:NSObject, NSCoding {
 class FoodHistory {
     private var foods:[FridgeFoodInfo] = []
     var foodByFridge:[String:[FridgeFoodInfo]] = [:]
-    var fridges:[String] = ["Frigo", "Placard", "Autre"]
+    var fridges:[String] = ["Frigo", "Placard", "Congélateur", "Frigo 2", "Autre"]
     static let shared:FoodHistory = FoodHistory()
     let queue = DispatchQueue.global(qos: .background)
     
@@ -98,10 +98,20 @@ class FoodHistory {
     
     // MARK: External access to foods
     
+    func allFoods() -> [FridgeFoodInfo] {
+        return foods
+    }
+    
     func append(_ food: FridgeFoodInfo) {
         self.foods.append(food)
         DispatchQueue.main.async {
             self.saveHistory()
+        }
+    }
+
+    func remove(food: FridgeFoodInfo) {
+        if let index = self.foods.index(of: food) {
+            remove(at: index)
         }
     }
     
