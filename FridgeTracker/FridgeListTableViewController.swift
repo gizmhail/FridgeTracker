@@ -177,10 +177,10 @@ extension FridgeListTableViewController:UIPickerViewDelegate {
         
         let indiceFont = UIFont.systemFont(ofSize: 15)
         
-        let attString = NSMutableAttributedString(string: str, attributes: [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:UIFont.systemFont(ofSize: 28)])
+        let attString = NSMutableAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font:UIFont.systemFont(ofSize: 28)])
         let indexRange = (str as NSString).range(of: fridgeContentStr)
         
-        attString.setAttributes([NSFontAttributeName:indiceFont,NSBaselineOffsetAttributeName:-6,NSForegroundColorAttributeName:UIColor.white], range: indexRange)
+        attString.setAttributes([NSAttributedStringKey.font:indiceFont,NSAttributedStringKey.baselineOffset:-6,NSAttributedStringKey.foregroundColor:UIColor.white], range: indexRange)
         pickerLabel.attributedText = attString
         return pickerLabel
     }

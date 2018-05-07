@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         if let navigationController = self.window?.rootViewController as? UINavigationController {
-            navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+            navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         }
         
         let fh = FoodHistory.shared

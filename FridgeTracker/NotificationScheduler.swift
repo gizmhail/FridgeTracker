@@ -98,19 +98,15 @@ class NotificationScheduler: NSObject {
             content.categoryIdentifier = FoodNotificationAction.category
             content.userInfo = userInfo
             if let imageURL = food.imageFileURL {
+                // Attachment "consumes" images, so we copy it
+                let notificationImagePath = imageURL.path + ".notification.png"
+                let notificationImageUrl = URL(fileURLWithPath: notificationImagePath)
                 do {
-                    // Attachment "consumes" images, so we copy it
-                    let notificationImagePath = imageURL.path + ".notification.png"
-                    let notificationImageUrl = URL(fileURLWithPath: notificationImagePath)
-                    do {
-                        try FileManager.default.copyItem(at: URL(fileURLWithPath: imageURL.path) , to: URL(fileURLWithPath: notificationImageUrl.path))
-                        let attachement = try UNNotificationAttachment(identifier: "\(foodId)_image", url: notificationImageUrl, options: nil)
-                        content.attachments = [attachement]
-                    } catch {
-                        print("Unableto backup db")
-                    }
+                    try FileManager.default.copyItem(at: URL(fileURLWithPath: imageURL.path) , to: URL(fileURLWithPath: notificationImageUrl.path))
+                    let attachement = try UNNotificationAttachment(identifier: "\(foodId)_image", url: notificationImageUrl, options: nil)
+                    content.attachments = [attachement]
                 } catch {
-                    print(error)
+                    print("Unable to backup db")
                 }
             }
 

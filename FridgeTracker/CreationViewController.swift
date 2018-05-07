@@ -100,7 +100,10 @@ class CreationViewController: UIViewController {
     
     func captureInitialisation() {
         // Camera input
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+            print("Error: Camera not available")
+            return
+        }
         
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -110,22 +113,25 @@ class CreationViewController: UIViewController {
             print(error)
             return
         }
-        
+        guard let captureSession = avCaptureSession else {
+            print("Error: Unable to create capture session")
+            return
+        }
         // Snapshot output
-        if let avCaptureSession = avCaptureSession, avCaptureSession.canAddOutput(snapshotOutput) {
-            avCaptureSession.addOutput(snapshotOutput)
+        if captureSession.canAddOutput(snapshotOutput) {
+            captureSession.addOutput(snapshotOutput)
         }
         
         // MD output
         let mdOutput = AVCaptureMetadataOutput()
-        avCaptureSession?.addOutput(mdOutput)
+        captureSession.addOutput(mdOutput)
         mdOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        mdOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code]
+        mdOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.ean13]
         
         // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
-        cameraViewLayer = AVCaptureVideoPreviewLayer(session: avCaptureSession)
+        cameraViewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         if let cameraViewLayer = cameraViewLayer {
-            cameraViewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            cameraViewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             cameraViewLayer.frame = captureView.layer.bounds
             captureView.layer.addSublayer(cameraViewLayer)
         }
@@ -145,7 +151,7 @@ class CreationViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         cameraViewLayer?.frame = view.layer.bounds
-        cameraViewLayer?.connection.videoOrientation = AVCaptureVideoOrientation(from: UIApplication.shared.statusBarOrientation) ?? .portrait
+        cameraViewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation(from: UIApplication.shared.statusBarOrientation) ?? .portrait
     }
     
     // Barcode analysis
@@ -276,7 +282,7 @@ class CreationViewController: UIViewController {
     }
     
     @IBAction func snapshotClick(_ sender: Any) {
-        if let _ = snapshotOutput.connection(withMediaType: AVMediaTypeVideo) {
+        if let _ = snapshotOutput.connection(with: AVMediaType.video) {
             let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecJPEG])
             snapshotOutput.capturePhoto(with: settings, delegate: self)
         }
@@ -285,7 +291,7 @@ class CreationViewController: UIViewController {
 }
 
 extension CreationViewController:AVCaptureMetadataOutputObjectsDelegate {
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(_ captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // print(metadataObjects)
         barcodeFrameView?.isHidden = false
         for mdObject in metadataObjects {
@@ -320,7 +326,7 @@ extension CreationViewController:UITextFieldDelegate {
 }
 
 extension CreationViewController:AVCapturePhotoCaptureDelegate {
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         // Source: https://stackoverflow.com/questions/39173865/avcapturestillimageoutput-vs-avcapturephotooutput-in-swift-3
         if let error = error {
             print("error occure : \(error.localizedDescription)")
@@ -330,8 +336,14 @@ extension CreationViewController:AVCapturePhotoCaptureDelegate {
             let dataImage =  AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer:  sampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) {
             //print(UIImage(data: dataImage)?.size as Any)
             
-            let dataProvider = CGDataProvider(data: dataImage as CFData)
-            let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+            guard let dataProvider = CGDataProvider(data: dataImage as CFData) else {
+                print("Error: unable to start core graphic data provider")
+                return
+            }
+            guard let cgImageRef = CGImage(jpegDataProviderSource: dataProvider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) else {
+                print("Error: Unable to create image")
+                return
+            }
             let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.right)
             
             self.food?.image = image.correctlyOrientedImage()
@@ -380,10 +392,10 @@ extension CreationViewController:UIPickerViewDelegate {
         
         let indiceFont = UIFont.systemFont(ofSize: 15)
         
-        let attString = NSMutableAttributedString(string: str, attributes: [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:UIFont.systemFont(ofSize: 28)])
+        let attString = NSMutableAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font:UIFont.systemFont(ofSize: 28)])
         let indexRange = (str as NSString).range(of: fridgeContentStr)
         
-        attString.setAttributes([NSFontAttributeName:indiceFont,NSBaselineOffsetAttributeName:-6,NSForegroundColorAttributeName:UIColor.white], range: indexRange)
+        attString.setAttributes([NSAttributedStringKey.font:indiceFont,NSAttributedStringKey.baselineOffset:-6,NSAttributedStringKey.foregroundColor:UIColor.white], range: indexRange)
         pickerLabel.attributedText = attString
         return pickerLabel
     }
