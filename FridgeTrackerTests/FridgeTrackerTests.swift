@@ -33,4 +33,20 @@ class FridgeTrackerTests: XCTestCase {
         }
     }
     
+    func testOFF(){
+        let expectation = self.expectation(description: "OFF answer")
+        let barcode = "3254550031985"
+        URLSession.shared.openFoodFactTask(forBarcode: barcode, completionHandler: { (product, response, error) in
+            if let product = product {
+                print(product)
+                expectation.fulfill()
+            }
+        })?.resume()
+        self.waitForExpectations(timeout: 5) { (error) in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
 }

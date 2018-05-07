@@ -19,6 +19,7 @@ class CreationViewController: UIViewController {
 
     @IBOutlet weak var fridgePickerView: UIPickerView!
     
+    @IBOutlet weak var nutritionGradeIMageView: UIImageView!
     
     @IBOutlet weak var captureView: UIView!
     @IBOutlet weak var foodNameTextField: UITextField!
@@ -183,6 +184,7 @@ class CreationViewController: UIViewController {
         self.resultName.text = ""
         self.snapshotCaptureView.isHidden = true
         self.validateResultButton.isHidden = true
+        self.nutritionGradeIMageView.image = nil
     }
     
     func displayResultScreenForNoResult(){
@@ -193,6 +195,7 @@ class CreationViewController: UIViewController {
         self.resultName.text = "Article inconnu"
         self.resultImage.image = nil
         self.validateResultButton.isHidden = true
+        self.nutritionGradeIMageView.image = nil
     }
     
     func displayResultScreen(forFoodName foodName: String?, foodImage: UIImage? = nil, activityRunning: Bool = true) {
@@ -211,6 +214,10 @@ class CreationViewController: UIViewController {
             self.resultImage.image = FridgeFoodInfo.noImageIcon
         }
         self.validateResultButton.isHidden = false
+        if let off = self.openFoodFactResult, let grade = off.nutritionGrade, let image = UIImage(named: "Nutri-score-\(grade.uppercased())") {
+            self.nutritionGradeIMageView.image = image
+            self.nutritionGradeIMageView.isHidden = false
+        }
     }
 
     func dismissResultScreen() {

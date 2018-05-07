@@ -26,6 +26,10 @@ struct OpenFoodFactsProduct {
     var barcode: String? {
         return json["code"] as? String
     }
+    
+    var nutritionGrade: String? {
+        return productInfo?["nutrition_grades"] as? String
+    }
 }
 
 
