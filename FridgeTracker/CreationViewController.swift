@@ -36,7 +36,8 @@ class CreationViewController: UIViewController {
     var barcodeFrameView:UIView?
     var latestBarcodeValue:String? = nil
     var snapshotOutput = AVCapturePhotoOutput()
-
+    var productImageTask:URLSessionDataTask?
+    
     @IBOutlet weak var snapshotCaptureView: UIView!
     
     @IBOutlet weak var expirationdatePicker: UIDatePicker!
@@ -149,19 +150,7 @@ class CreationViewController: UIViewController {
         
         self.foodRequest?.cancel()
         self.foodRequest = URLSession.shared.openFoodFactTask(forBarcode: barcode, completionHandler: { (product, response, error) in
-            if let product = product, let foodName = product.productName {
-                self.openFoodFactResult = product
-                self.displayResultScreen(forFoodName: foodName)
-                if let foodImageUrlStr = product.imageUrlStr,
-                    let foodImageUrl = URL(string: foodImageUrlStr),
-                    let data = try? Data(contentsOf: foodImageUrl) {
-                    self.displayResultScreen(forFoodName: foodName, foodImage: UIImage(data: data), activityRunning: false)
-                } else {
-                    self.displayResultScreen(forFoodName: foodName, foodImage: nil, activityRunning: false)
-                }
-            } else {
-                self.displayResultScreenForNoResult()
-            }
+            self.display(product: product)
         })
         self.foodRequest?.resume()
     }
@@ -190,8 +179,17 @@ class CreationViewController: UIViewController {
         self.validateResultButton.isHidden = true
         self.nutritionGradeIMageView.image = nil
     }
-    
-    func displayResultScreen(forFoodName foodName: String?, foodImage: UIImage? = nil, activityRunning: Bool = true) {
+
+    func display(product:OpenFoodFactsProduct?){
+        if let product = product, let foodName = product.productName {
+            self.openFoodFactResult = product
+            self.displayResultScreen(forFoodName: foodName)
+            self.displayProductImage(for: product)
+        } else {
+            self.displayResultScreenForNoResult()
+        }
+    }
+    func displayResultScreen(forFoodName foodName: String?, activityRunning: Bool = true) {
         self.snapshotCaptureView.isHidden = true
         self.resultSearchingInfoLabel.isHidden = true
         self.resultView.isHidden = false
@@ -201,15 +199,28 @@ class CreationViewController: UIViewController {
         } else {
             self.resultName.text = "Inconnu"
         }
-        if let foodImage = foodImage {
-            self.resultImage.image = foodImage
-        } else {
-            self.resultImage.image = FridgeFoodInfo.noImageIcon
-        }
         self.validateResultButton.isHidden = false
         if let off = self.openFoodFactResult, let grade = off.nutritionGrade, let image = UIImage(named: "Nutri-score-\(grade.uppercased())") {
             self.nutritionGradeIMageView.image = image
             self.nutritionGradeIMageView.isHidden = false
+        }
+    }
+    
+    func displayProductImage(for product:OpenFoodFactsProduct){
+        productImageTask?.cancel()
+        if let foodImageUrlStr = product.imageUrlStr,
+            let foodImageUrl = URL(string: foodImageUrlStr){
+            let request = URLRequest(url: foodImageUrl)
+            productImageTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    let foodImage = UIImage(data: data)
+                    self.resultImage.image = foodImage
+                } else {
+                    self.resultImage.image = FridgeFoodInfo.noImageIcon
+                }
+            }
+        } else {
+            self.resultImage.image = FridgeFoodInfo.noImageIcon
         }
     }
 
