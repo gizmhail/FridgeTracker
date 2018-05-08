@@ -20,6 +20,7 @@
 		4F4F29131F2B7750006A5D1D /* FridgeFoodInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */; };
 		4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */; };
 		4F4F29181F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */; };
+		4F5D219C20A0F54C00FF42C1 /* FoodHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D219B20A0F54C00FF42C1 /* FoodHistory.swift */; };
 		4FCB930D1F2E7C0400997B3A /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */; };
 		4FD1B6591F37BC540055B02B /* UIImageOrientationFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1B6581F37BC540055B02B /* UIImageOrientationFix.swift */; };
 		4FF95CF71F2D372C0078E632 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */; };
@@ -63,6 +64,7 @@
 		4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodInfo.swift; sourceTree = "<group>"; };
 		4F4F29151F2BD9D8006A5D1D /* FridgeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeListTableViewController.swift; sourceTree = "<group>"; };
 		4F4F29171F2BDB0A006A5D1D /* FridgeHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		4F5D219B20A0F54C00FF42C1 /* FoodHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHistory.swift; sourceTree = "<group>"; };
 		4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		4FD1B6581F37BC540055B02B /* UIImageOrientationFix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageOrientationFix.swift; sourceTree = "<group>"; };
 		4FF95CF61F2D372C0078E632 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				4F4F29101F2B6F6A006A5D1D /* OpenFoodFactsRequest.swift */,
 				4F4F29121F2B7750006A5D1D /* FridgeFoodInfo.swift */,
 				4FCB930C1F2E7C0400997B3A /* NotificationScheduler.swift */,
+				4F5D219B20A0F54C00FF42C1 /* FoodHistory.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				4F4F290D1F2B54D7006A5D1D /* AVCaptureVideoTools.swift in Sources */,
 				4F4F29161F2BD9D8006A5D1D /* FridgeListTableViewController.swift in Sources */,
 				4F4F29111F2B6F6A006A5D1D /* OpenFoodFactsRequest.swift in Sources */,
+				4F5D219C20A0F54C00FF42C1 /* FoodHistory.swift in Sources */,
 				4FCB930D1F2E7C0400997B3A /* NotificationScheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

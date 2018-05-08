@@ -52,7 +52,7 @@ class CreationViewController: UIViewController {
     @IBOutlet weak var resultSearchingInfoLabel: UILabel!
     var openFoodFactResult:OpenFoodFactsProduct? = nil
     
-    
+    //MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         captureInitialisation()
@@ -76,21 +76,7 @@ class CreationViewController: UIViewController {
         UserDefaults.standard.synchronize()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
+    // MARK: UI state
     func resetFoodInfo() {
         self.food = FridgeFoodInfo()
         updateSelectedFoodUI()
@@ -98,6 +84,7 @@ class CreationViewController: UIViewController {
         self.expirationdatePicker.date = Date()
     }
     
+    // MARK: Capture
     func captureInitialisation() {
         // Camera input
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
@@ -290,6 +277,7 @@ class CreationViewController: UIViewController {
     
 }
 
+// MARK: AVCaptureMetadataOutputObjectsDelegate
 extension CreationViewController:AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // print(metadataObjects)
@@ -312,6 +300,7 @@ extension CreationViewController:AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension CreationViewController:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.foodInfoBottomConstant.constant = self.foodNameTextField.frame.size.height + self.foodNameTextField.frame.origin.y
@@ -325,6 +314,7 @@ extension CreationViewController:UITextFieldDelegate {
     }
 }
 
+// MARK: AVCapturePhotoCaptureDelegate
 extension CreationViewController:AVCapturePhotoCaptureDelegate {
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         // Source: https://stackoverflow.com/questions/39173865/avcapturestillimageoutput-vs-avcapturephotooutput-in-swift-3
@@ -354,6 +344,7 @@ extension CreationViewController:AVCapturePhotoCaptureDelegate {
     }
 }
 
+// MARK: UIPickerViewDelegate
 extension CreationViewController:UIPickerViewDelegate {
     
 
@@ -406,6 +397,7 @@ extension CreationViewController:UIPickerViewDelegate {
 
 }
 
+// MARK: UIPickerViewDataSource
 extension CreationViewController:UIPickerViewDataSource {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -416,4 +408,3 @@ extension CreationViewController:UIPickerViewDataSource {
         return FoodHistory.shared.fridges.count
     }
 }
-

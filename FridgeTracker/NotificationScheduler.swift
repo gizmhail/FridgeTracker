@@ -141,15 +141,7 @@ extension NotificationScheduler:UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == FoodNotificationAction.delete {
             if let foodId = response.notification.request.content.userInfo["FoodId"] as? String {
-                var index = 0
-                while (index<FoodHistory.shared.count) {
-                    let food = FoodHistory.shared[index]
-                    if food.foodId == foodId {
-                        FoodHistory.shared.remove(at: index)
-                        break
-                    }
-                    index += 1
-                }
+                FoodHistory.shared.removeFood(id: foodId)
             }
         }
         completionHandler()
