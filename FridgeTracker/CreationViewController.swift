@@ -212,13 +212,16 @@ class CreationViewController: UIViewController {
             let foodImageUrl = URL(string: foodImageUrlStr){
             let request = URLRequest(url: foodImageUrl)
             productImageTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let data = data {
-                    let foodImage = UIImage(data: data)
-                    self.resultImage.image = foodImage
-                } else {
-                    self.resultImage.image = FridgeFoodInfo.noImageIcon
+                DispatchQueue.main.async {
+                    if let data = data {
+                        let foodImage = UIImage(data: data)
+                        self.resultImage.image = foodImage
+                    } else {
+                        self.resultImage.image = FridgeFoodInfo.noImageIcon
+                    }
                 }
             }
+            productImageTask?.resume()
         } else {
             self.resultImage.image = FridgeFoodInfo.noImageIcon
         }
